@@ -376,7 +376,7 @@ body {
 }
 
 
-.login-page, .signup-page {
+.signup-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -500,6 +500,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 
 }
+
 
 
 
