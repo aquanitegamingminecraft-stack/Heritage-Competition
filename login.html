@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <body style="background-color:rgb(55, 62, 94);"></body>
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login | Web Arcade!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="login-body">
+
+<body class="login-body" style="background-color:rgb(55, 62, 94);">
+
   <div class="login-container">
     <h1>🎮 Web Arcade</h1>
-    <form onsubmit="loginUser(event)">
+
+    <form id="loginForm">
       <input type="text" id="username" placeholder="Enter Username" required />
       <input type="password" id="password" placeholder="Enter Password" required />
       <button type="submit">Login</button>
@@ -19,16 +21,36 @@
     </form>
   </div>
 
-  <script>
-    function loginUser(e) {
-      e.preventDefault();
-      const username = document.getElementById("username").value;
-      localStorage.setItem("username", username);
-      window.location.href = "menu.html";
-    }
-  </script>
-</body>
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
 
+  fetch('https://script.google.com/macros/s/AKfycbzuSfjc-eH0nLVSSjM15uzq_s3FMMh2WiVh_PRjwaSRmb5oJLCNJlcpiMx94xQEC_E0/exec', {
+    method: 'POST',
+    body: new URLSearchParams({
+      action: 'login',
+      username,
+      password
+    })
+  })
+  .then(res => res.text())
+  .then(data => {
+    if (data === 'success') {
+      localStorage.setItem("username", username); // store username for later
+      window.location.href = "menu.html"; // login success → go to menu
+    } else {
+      alert("Invalid credentials. Try again.");
+    }
+  });
+});
+</script>
+
+</body>
 </html>
+
+
 
 
