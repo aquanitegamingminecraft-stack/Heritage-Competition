@@ -375,13 +375,13 @@ body {
   box-shadow: 0 0 20px var(--accent)33;
 }
 
-/* 🌈 Common styles for login & signup */
+
 .login-page, .signup-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url("/login.gif") center/cover no-repeat;
+  background: url("/login.gif") no-repeat center center fixed;
   color: var(--text-color);
   font-family: 'Poppins', sans-serif;
 }
@@ -500,6 +500,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 
 }
+
 
 
 
