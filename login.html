@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +25,7 @@
 <script>
 document.getElementById('loginForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  
+
   const username = document.getElementById('username').value.trim();
   const password = document.getElementById('password').value.trim();
 
@@ -39,10 +40,10 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   .then(res => res.text())
   .then(data => {
     if (data === 'success') {
-      localStorage.setItem("username", username); // store username for later
-      window.location.href = "menu.html"; // login success → go to menu
+      localStorage.setItem("username", username); 
+      window.location.href = "menu.html"; 
     } else {
-      alert("Invalid credentials. Try again.");
+      alert("❌ Invalid username or password");
     }
   });
 });
@@ -50,6 +51,8 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
 </body>
 </html>
+
+
 
 
 
