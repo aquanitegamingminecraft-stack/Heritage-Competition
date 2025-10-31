@@ -7,18 +7,57 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="signup-page">
-  <div class="signup-container">
-    <h2>🕹️ Create Your Web Arcade Account</h2>
 
-    <form id="signupForm">
-      <input type="text" id="username" placeholder="Enter username" required />
-      <input type="password" id="password" placeholder="Enter password" required />
-      <input type="password" id="confirm" placeholder="Confirm password" required />
-      <button type="submit" class="signup-btn">Sign Up</button>
+<div class="signup-container">
+  <h2>🕹️ Create Your Web Arcade Account</h2>
 
-      <p>Already have an account? <a href="login.html">Login here</a></p>
-    </form>
-  </div>
+  <form id="signupForm">
+    <input type="text" id="username" placeholder="Enter username" required />
+    <input type="password" id="password" placeholder="Enter password" required />
+    <input type="password" id="confirm" placeholder="Confirm password" required />
+    <button type="submit" class="signup-btn">Sign Up</button>
+
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+  </form>
+</div>
+
+<script>
+const form = document.getElementById("signupForm");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+  const confirm = document.getElementById("confirm").value;
+
+  if (password !== confirm) {
+    alert("⚠️ Passwords do not match!");
+    return;
+  }
+
+  fetch('https://script.google.com/macros/s/AKfycbzuSfjc-eH0nLVSSjM15uzq_s3FMMh2WiVh_PRjwaSRmb5oJLCNJlcpiMx94xQEC_E0/exec', {
+    method: 'POST',
+    body: new URLSearchParams({
+      action: 'signup',
+      username,
+      password
+    })
+  })
+  .then(res => res.text())
+  .then(data => {
+    if (data === 'success') {
+      alert("✅ Signup successful! Please login.");
+      window.location.href = "login.html";
+    } else {
+      alert("⚠️ Username already exists. Try another.");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
 
   <script>
     const form = document.getElementById("signupForm");
@@ -43,4 +82,5 @@
     });
   </script>
 </body>
+
 </html>
