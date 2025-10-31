@@ -24,27 +24,7 @@
       <li><a href="login.html" onclick="logout()">🚪 Logout</a></li>
     </ul>
   </div>
-    <audio id="bg-music" src="yourmusic.mp3" autoplay loop></audio>
-
-       <label for="volume">🔊 Volume:</label>
-       <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
-
-      <iframe id="game-frame" src="game.html"></iframe>
-
-<script>
-  const bgMusic = document.getElementById("bg-music");
-  const volumeSlider = document.getElementById("volume");
-  const gameFrame = document.getElementById("game-frame");
-
-  bgMusic.volume = volumeSlider.value;
-
-  // update main bg music
-  volumeSlider.addEventListener("input", () => {
-    bgMusic.volume = volumeSlider.value;
-    // send message to iframe game
-    gameFrame.contentWindow.postMessage({ volume: volumeSlider.value }, "*");
-  });
-</script>
+    
 
 
     <div class="game-section">
@@ -191,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
+
 
 
 
