@@ -6,11 +6,7 @@
   Your browser does not support the audio element.
 </audio
 <head>
-  </div>
-      <br><br>
-      <label>🔊 Default Volume:</label>
-      <input type="range" id="volumeControl" min="0" max="100" />
-    </div>
+  
   </div>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
@@ -30,8 +26,13 @@
       <li><a href="login.html" onclick="logout()">🚪 Logout</a></li>
     </ul>
   </div>
-    
-
+    <div class="topbar">
+      <h1 id="welcomeText">Welcome to the Web Arcade! </h1> 
+      <div class="controls">
+        <label>🔊 Volume</label>
+        <input type="range" id="volume" min="0" max="100" value="50" />
+      </div>
+    </div>
 
     <div class="game-section">
       <h2>Choose a game to start playing 🎯</h2>
@@ -177,6 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
+
 
 
 
