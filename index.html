@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Web Arcade</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="signup-page">
+  <div class="signup-container">
+    <h2>🕹️ Create Your Web Arcade Account</h2>
+
+    <form id="signupForm">
+      <input type="text" id="username" placeholder="Enter username" required />
+      <input type="password" id="password" placeholder="Enter password" required />
+      <input type="password" id="confirm" placeholder="Confirm password" required />
+      <button type="submit" class="signup-btn">Sign Up</button>
+
+      <p>Already have an account? <a href="login.html">Login here</a></p>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("signupForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm").value;
+
+      if (password !== confirm) {
+        alert("⚠️ Passwords do not match!");
+        return;
+      }
+
+      // Save signup data
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
+
+      alert("✅ Signup successful! Please log in now.");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>

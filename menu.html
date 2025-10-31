@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <audio autoplay loop>
+  <source src="yourmusic.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main Menu | Web Arcade</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>🎮 Arcade</h2>
+    <ul>
+      <li><a href="menu.html">🏠 Home</a></li>
+      <li><a href="game.html?game=snake">🐍 Snake</a></li>
+      <li><a href="game.html?game=pong">🏓 Pong</a></li>
+      <li><a href="game.html?game=racer">🚗 Racer</a></li>
+      <li><a href="settings.html">⚙️ Settings</a></li>
+      <li><a href="login.html" onclick="logout()">🚪 Logout</a></li>
+    </ul>
+  </div>
+
+  <div class="main">
+    
+    <div class="topbar">
+      <h1 id="welcomeText">Welcome to the Web Arcade! </h1> 
+      <div class="controls">
+        <label>🔊 Volume</label>
+        <input type="range" id="volume" min="0" max="100" value="50" />
+      </div>
+    </div>
+
+    <div class="game-section">
+      <h2>Choose a game to start playing 🎯</h2>
+      <div class="game-grid">
+        <div class="game-card">
+          <a href="game.html?game=snake">
+         <img src="images/snake.jpg" alt="Snake Game">
+          </a>
+         <h3>🐍 Snake</h3>
+         <p>Classic Snake! Collect dots, avoid walls.</p>
+         <a href="game.html?game=snake" class="btn">Play Now</a>
+          </div>
+
+         <div class="game-card">
+          <a href="game.html?game=pong">
+            <img src="images/pong.jpg" alt="Pong Game">
+          </a>
+       <h3>🏓 Pong</h3>
+   <p>2 Player Ping Pong challenge!</p>
+  <a href="game.html?game=pong" class="btn">Play Now</a>
+</div>
+
+<div class="game-card">
+  <a href="game.html?game=racer">
+  <img src="images/racer.jpg" alt="Racer Game" >
+  </a>
+  <h3>🚗 Racer</h3>
+  <p>Race through traffic and test reflexes!</p>
+  <a href="game.html?game=racer" class="btn">Play Now</a>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  //  Load saved theme first
+
+document.addEventListener("DOMContentLoaded", function () {
+
+ 
+
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") document.body.classList.add("light-mode");
+
+  //  Show username
+  const name = localStorage.getItem("username");
+  if (name) document.getElementById("welcomeText").textContent = `Welcome to the Web Arcade, ${name}!`;
+
+  //  Load & save volume
+  const volume = document.getElementById("volume");
+  const savedVolume = localStorage.getItem("volume") || 50;
+  volume.value = savedVolume;
+
+  volume.addEventListener("input", () => {
+    localStorage.setItem("volume", volume.value);
+  });
+
+  // Logout function
+  function logout() {
+    localStorage.removeItem("username");
+  }
+
+
+  if (name) {
+    const leaderboard = document.getElementById("leaderboard-tbl");
+
+    // Check if player already exists
+    let alreadyThere = false;
+    leaderboard.querySelectorAll("tr").forEach(row => {
+      const playerCell = row.cells[1];
+      if (playerCell && playerCell.textContent === name) {
+        alreadyThere = true;
+      }
+    });
+
+    // Add new row if not found
+    if (!alreadyThere) {
+      const newRow = leaderboard.insertRow(-1);
+      const rankCell = newRow.insertCell(0);
+      const playerCell = newRow.insertCell(1);
+      const scoreCell = newRow.insertCell(2);
+
+      rankCell.textContent = leaderboard.rows.length - 1; // Auto rank
+      playerCell.textContent = name;
+      scoreCell.textContent = Math.floor(5000); // Random demo score
+    }
+  }
+
+
+
+
+  });
+
+  </script>
+
+  <section id="leaderboard-section">
+  <h2>🏆 Leaderboard 🏆</h2>
+  <table class="leaderboard" id="leaderboard-tbl">
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Score</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>PixelNinja</td>
+      <td>9600</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td class="highlight">Aquanite</td>
+      <td>9400</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>ShadowMaster</td>
+      <td>8800</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>ByteKnight</td>
+      <td>7700</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>CodeBlazer</td>
+      <td>6500</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>MasterSigma</td>
+      <td>6000</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>GigaChad</td>
+      <td>5500</td>
+    </tr>
+  </table>
+</section>
+
+</body>
+</html>
